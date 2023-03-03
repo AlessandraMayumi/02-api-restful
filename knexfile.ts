@@ -1,4 +1,5 @@
 import type { Knex } from 'knex';
+import { env } from './env';
 
 // Update with your config settings.
 
@@ -6,7 +7,7 @@ const config: { [key: string]: Knex.Config } = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './db/mydb.sqlite'
+      filename: env.DATABASE_URL
     }
   },
 

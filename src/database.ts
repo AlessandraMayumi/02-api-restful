@@ -1,9 +1,10 @@
 import { knex } from 'knex';
+import { env } from '../env';
 
 export const db = knex({
     client: 'sqlite3',
     connection: {
-        filename: './db/mydb.sqlite'
+        filename: env.DATABASE_URL
     },
     useNullAsDefault: true,
     migrations: {

@@ -1,11 +1,20 @@
 import fastify from 'fastify';
+import crypto from 'node:crypto';
 import { db } from './database';
 
 const app = fastify();
 
 app.get('/', async () => {
-    const test = await db('sqlite_schema').select('*');
-    return test;
+    // const transaction = await db('transactions').insert({
+    //     id: crypto.randomUUID(),
+    //     title: 'Transacao teste',
+    //     amount: 1000
+    // });
+
+    const transaction = await db('transactions')
+        .select('*');
+
+    return transaction;
 });
 
 app.listen({
