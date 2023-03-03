@@ -1,9 +1,14 @@
 import { knex } from 'knex';
 
 export const db = knex({
-    client: 'sqlite',
+    client: 'sqlite3',
     connection: {
-      filename: './tmp/app.db'
-    }
-  });
-  
+        filename: './db/mydb.sqlite'
+    },
+    useNullAsDefault: true,
+    migrations: {
+        extension: 'ts',
+        directory: 'db/migrations'
+    },
+    
+});
