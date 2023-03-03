@@ -16,7 +16,37 @@ npx tsx src/server.ts
 ```
 
 Compare time
-```
+``` JavaScript
 time node src/server.js
 time npx tsx src/server.ts
 ```
+
+Database
+``` JavaScript
+// Install knex
+nom i knex sqlite3
+npm i knex -g
+// knexfile.ts
+knex init -x ts
+// migration
+knex migrate:make create_transactions -x ts
+knex migrate:latest
+knex migrate:rollback
+```
+
+Environment Variable 
+```
+npm i zod
+```
+
+## Requisitos da aplicação
+### Requisitos Funcionais
+[] O usuário deve poder `criar uma nova transação`;<br>
+[] O usuário deve poder `obter um resumo da sua conta`;<br>
+[] O usuário deve poder `listar todas as transações que já ocorreram`;<br>
+[] O usuário deve poder `visualizar uma transação única`;<br>
+### Regras de Negócio
+[] A transação pode ser do tipo crédito que somará ao valor total, ou débito que subitrairá;<br>
+[] Deve ser possível identificarmos o usuário entre as requisições;<br>
+[] O usuário só pode visualizar transações criadas por ele;<br> 
+### Requisitos Não Funcionais
