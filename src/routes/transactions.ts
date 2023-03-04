@@ -24,11 +24,16 @@ export async function trasactionsRoutes(app: FastifyInstance) {
 
         const { id } = params;
 
-        const transaction = await db('transactions').where('id',id).first();
+        const transaction = await db('transactions').where('id', id).first();
 
         return {
             transaction
         };
+    });
+
+    app.get('/summary', async () => {
+        const summary = await db('transactions').sum('amount', { as: 'amount' }).first();
+        return { summary };
     });
 
     app.post('/', async (request, response) => {

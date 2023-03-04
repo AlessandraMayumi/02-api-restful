@@ -41,12 +41,12 @@ npm i zod
 
 ## Requisitos da aplicação
 ### Requisitos Funcionais
-[] O usuário deve poder `criar uma nova transação`;<br>
-[] O usuário deve poder `obter um resumo da sua conta`;<br>
-[] O usuário deve poder `listar todas as transações que já ocorreram`;<br>
-[] O usuário deve poder `visualizar uma transação única`;<br>
+[x] O usuário deve poder `criar uma nova transação`;<br>
+[x] O usuário deve poder `obter um resumo da sua conta`;<br>
+[x] O usuário deve poder `listar todas as transações que já ocorreram`;<br>
+[x] O usuário deve poder `visualizar uma transação única`;<br>
 ### Regras de Negócio
-[] A transação pode ser do tipo crédito que somará ao valor total, ou débito que subitrairá;<br>
+[x] A transação pode ser do tipo crédito que somará ao valor total, ou débito que subitrairá;<br>
 [] Deve ser possível identificarmos o usuário entre as requisições;<br>
 [] O usuário só pode visualizar transações criadas por ele;<br> 
 ### Requisitos Não Funcionais
