@@ -5,6 +5,14 @@ import { db } from './../database';
 
 
 export async function trasactionsRoutes(app: FastifyInstance) {
+
+    app.get('/', async () => {
+        const transactions = await db('transactions').select('*');
+        return {
+            transactions
+        };
+    });
+
     app.post('/', async (request, response) => {
         const createTransactionBodySchema = z.object({
             title: z.string(),
