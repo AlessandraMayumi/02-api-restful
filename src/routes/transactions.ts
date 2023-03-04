@@ -49,6 +49,17 @@ export async function trasactionsRoutes(app: FastifyInstance) {
 
         const { title, amount, type } = body;
 
+        // Cookie sessionId
+        let sessionId = request.cookies.sessionId;
+        
+        if(!sessionId) {
+            sessionId = randomUUID();
+            response.cookie('sessionId', sessionId, {
+                path:'/',
+                maxAge: 1000 * 60 * 60 * 24, // 7 days
+            });
+        }
+
         await db('transactions').insert({
             id: randomUUID(),
             title,
