@@ -13,6 +13,24 @@ export async function trasactionsRoutes(app: FastifyInstance) {
         };
     });
 
+    app.get('/:id', async (request) => {
+        const getTransactionsParamsSchema = z.object({
+            id: z.string().uuid(),
+        });
+
+        const params = getTransactionsParamsSchema.parse(
+            request.params
+        );
+
+        const { id } = params;
+
+        const transaction = await db('transactions').where('id',id).first();
+
+        return {
+            transaction
+        };
+    });
+
     app.post('/', async (request, response) => {
         const createTransactionBodySchema = z.object({
             title: z.string(),
