@@ -6,6 +6,9 @@ import { checkSessionId } from '../middleware/check-session-id';
 
 
 export async function trasactionsRoutes(app: FastifyInstance) {
+    app.addHook('preHandler', async (request, reply) => {
+        console.log(`all routes ${request.method}: ${request.url}`);
+    });
 
     app.get('/', { preHandler: [checkSessionId] }, async (request) => {
         const { sessionId } = request.cookies;
