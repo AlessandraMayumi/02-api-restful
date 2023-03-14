@@ -7,6 +7,7 @@
     "dev": "tsx watch src/server.ts",
     "test": "vitest",
     "coverage": "vitest run --coverage",
+    "knex": "node --no-warnings --loader tsx ./node_modules/.bin/knex",
     "migrateCreate": "node --loader tsx ./node_modules/.bin/knex migrate:make add-session-id-to-transactions --migrations-directory db/migrations",
     "migrateLatest": "node --loader tsx ./node_modules/.bin/knex migrate:latest --migrations-directory db/migrations",
     "migrateRollback": "node --loader tsx ./node_modules/.bin/knex migrate:rollback --migrations-directory db/migrations",
