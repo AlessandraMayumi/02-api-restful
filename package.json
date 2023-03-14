@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
     "migrateCreate": "node --loader tsx ./node_modules/.bin/knex migrate:make add-session-id-to-transactions --migrations-directory db/migrations",
     "migrateLatest": "node --loader tsx ./node_modules/.bin/knex migrate:latest --migrations-directory db/migrations",
     "migrateRollback": "node --loader tsx ./node_modules/.bin/knex migrate:rollback --migrations-directory db/migrations",
@@ -31,10 +33,13 @@
   },
   "devDependencies": {
     "@types/node": "^18.14.4",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
     "dotenv": "^16.0.3",
     "eslint": "^8.35.0",
-    "tsx": "^3.12.3"
+    "supertest": "^6.3.3",
+    "tsx": "^3.12.3",
+    "vitest": "^0.29.2"
   }
 }
