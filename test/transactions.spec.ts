@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, test } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, test } from 'vitest';
 import supertest from 'supertest';
 import app from '../src/app';
 
@@ -11,8 +11,8 @@ describe('Transactions routes', () => {
         await app.close();
     });
 
-    test('user can create a new transaction', async () => {
-        await supertest(app.server)
+    it('should be able to create a new transaction', async () => {
+        const response = await supertest(app.server)
             .post('/transactions')
             .send({
                 title: 'New transaction',
@@ -20,5 +20,28 @@ describe('Transactions routes', () => {
                 type: 'credit',
             })
             .expect(201);
+        console.log(response.get('Set-Cookie'));
+    });
+
+    it('should be able to list all transactions', async () => {
+        const createTransactionResponse = await supertest(app.server)
+            .post('/transactions')
+            .send({
+                title: 'New transaction',
+                amount: 5000,
+                type: 'credit',
+            })
+            .expect(201);
+        const cookies = createTransactionResponse.get('Set-Cookie');
+        const listTransactionsResponse = await supertest(app.server)
+            .get('/transactions')
+            .set('Cookie', cookies)
+            .expect(200);
+        expect(listTransactionsResponse.body.transactions).toEqual([
+            expect.objectContaining({
+                title: 'New transaction',
+                amount: 5000,
+            })
+        ]);
     });
 });
