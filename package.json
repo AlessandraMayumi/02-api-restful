@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "test": "vitest",
+    "build": "tsup src",
     "coverage": "vitest run --coverage",
     "knex": "node --no-warnings --loader tsx ./node_modules/.bin/knex",
     "migrateCreate": "node --loader tsx ./node_modules/.bin/knex migrate:make add-session-id-to-transactions --migrations-directory db/migrations",
@@ -40,6 +41,7 @@
     "dotenv": "^16.0.3",
     "eslint": "^8.35.0",
     "supertest": "^6.3.3",
+    "tsup": "^6.6.3",
     "tsx": "^3.12.3",
     "vitest": "^0.29.2"
   }
